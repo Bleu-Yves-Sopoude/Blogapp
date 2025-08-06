@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :set_post, only: [ :show, :update, :delete]
+    before_action :set_post, only: [ :show, :update, :delete ]
 
 
     def index
@@ -13,11 +13,10 @@ class PostsController < ApplicationController
     def create
         @post =Post.new(post_params)
         if @post.save
-            redirect_to @post, notice:"Post was succesfully created"
+            redirect_to @post, notice: "Post was succesfully created"
         else
             render :new
         end
-
     end
 
     def show
@@ -29,7 +28,7 @@ class PostsController < ApplicationController
 
     def update
         if @post.update(post_params)
-            redirect_to @post, notice:"Post was succesfully updated"
+            redirect_to @post, notice: "Post was succesfully updated"
         else
             render :edit
         end
@@ -38,7 +37,7 @@ class PostsController < ApplicationController
 
     def delete
         @post.destroy
-        redirect_to @posts_url ,notice:"Task was succesfully deleted"
+        redirect_to @posts_url, notice: "Task was succesfully deleted"
     end
 
     private
@@ -50,8 +49,4 @@ class PostsController < ApplicationController
     def set_post
         @post =Post.find(params[:id])
     end
-
 end
-
-
-
