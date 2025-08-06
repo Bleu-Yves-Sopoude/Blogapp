@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :set_post only: [:new, :show, :update, :destroy]
+    before_action :set_post, only: [ :show, :update, :delete]
 
 
     def index
@@ -36,15 +36,15 @@ class PostsController < ApplicationController
     end
 
 
-    def destroy
+    def delete
         @post.destroy
-        redirect_to @posts.url ,notice:"Task was succesfully deleted"
+        redirect_to @posts_url ,notice:"Task was succesfully deleted"
     end
 
     private
 
     def post_params
-        parmas.require(:post).permit(:title, :description)
+        params.require(:post).permit(:title, :description)
     end
 
     def set_post
@@ -55,4 +55,3 @@ end
 
 
 
-end
