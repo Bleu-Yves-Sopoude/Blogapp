@@ -1,0 +1,8 @@
+<h1>POST </h1>
+
+<%= @post.title %>
+<%= @post.description %>
+
+<%= link_to "Back", posts_path(@posts) %>
+<%= button_to "Delete",post_path(@post), method: :delete, data:{confirm:"Are you sure ?"}%>
+
