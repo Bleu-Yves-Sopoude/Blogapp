@@ -8,9 +8,11 @@
       <%= link_to post.title, post_path(post) %>|
       <%= link_to post.description, edit_post_path(post) %> |
       <%= link_to "Edit", edit_post_path(post) %>|
-      <%= link_to "Back", post_path(post) %>
-      <%= button_to "Delete", post_path(post), method: :delete, data:{confirm: 'Are you sure ?' } %>
+      <%= link_to "Back", post_path(post) %>|
+      <%= button_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" } %>
     </li>
+
+
     <% end %>
 <%end %>
 
