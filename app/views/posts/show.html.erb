@@ -1,8 +1,35 @@
-<h1>POST </h1>
+<h1><%= @post.title %></h1>
+<p><%= @post.description %></p>
 
-<%= @post.title %>
-<%= @post.description %>
+<%= link_to "Back", posts_path %>
+<%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
 
-<%= link_to "Back", posts_path(@posts) %>
-<%= button_to "Delete",post_path(@post), method: :delete, data:{confirm:"Are you sure ?"}%>
+<hr>
 
+<h2>Add a Comment</h2>
+<%= form_with(model: [@post, @post.comments.build]) do |form| %>
+  <div>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </div>
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit "Add Comment" %>
+  </div>
+<% end %>
+
+<hr>
+
+<h3>Existing Comments</h3>
+<% @post.comments.each do |comment| %>
+    <% next if comment.id.nil? %>
+
+  <p>
+    <strong><%= comment.commenter %>:</strong>
+    <%= comment.content %>
+    <%= link_to 'Delete', post_comment_path(@post, comment), method: :destroy, data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>
