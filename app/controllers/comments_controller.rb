@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
     def create
       @comment = @post.comments.build(comment_params)
+      @comment.user = current_user
       if @comment.save
         redirect_to @post, notice: "Comment was successfully created."
       else
@@ -27,6 +28,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:commenter, :content)
+      params.require(:comment).permit(:content)
     end
 end
